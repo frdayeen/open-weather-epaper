@@ -222,7 +222,8 @@ def weather_Display(winfo, canvas):
 
     #current weather icon
     weather_icon = Image.open(img_folder + weather_Icons[curr_weather]+'.jpg').convert("RGBA")
-    canvas.paste(weather_icon, (15, 100), weather_icon)
+    weather_icon_resize = weather_icon.resize((120,120))
+    canvas.paste(weather_icon_resize, (15, 105), weather_icon_resize)
     weather_icon_next_day1 = Image.open(img_folder + weather_Icons[daily_weather[1]]+'.jpg').convert("RGBA")
     new_weather_icon_next_day1 = weather_icon_next_day1.resize((60,60))
     weather_icon_next_day2 = Image.open(img_folder+ weather_Icons[daily_weather[2]]+'.jpg').convert("RGBA")
