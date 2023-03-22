@@ -141,6 +141,7 @@ def weather_Display(winfo, canvas):
     celsius_txt = str(curr_temp)
     fahrenheit_txt = str(int((curr_temp * 1.8) + 32))
     curr_wind_txt = str(int(curr_wind))
+    curr_wind_txt_Mph = str(int(curr_wind/1.609344))
     wind_direct_text = cordianl_Direction(wind_direct)
     weather_txt = weather_Codes[curr_weather]
 
@@ -236,12 +237,20 @@ def weather_Display(winfo, canvas):
 
 
     # chance of rain        
-    draw.text((15, 220), "Precipitation", fill='#000000', font =display_Fonts(fonts.normal,fontsize=25))
-    draw.text((20, 245),  precipitation_chance_12hrs + '%' , fill='#008000', font =display_Fonts(fonts.light, fontsize=30))
-    PrecipitationText_width = draw.textlength(precipitation_chance_12hrs + '%', font =display_Fonts(fonts.normal, fontsize=30))
+    draw.text((15, 220), 'Precipitation', fill='#000000', font =display_Fonts(fonts.normal,fontsize=25))
+    draw.text((15, 245),  precipitation_chance_12hrs + '%' , fill='#008000', font =display_Fonts(fonts.light, fontsize=30))
+    PrecipitationText_width = draw.textlength(precipitation_chance_12hrs + '%', font =display_Fonts(fonts.light, fontsize=30))
     draw.text((PrecipitationText_width +25, 250), 'chance' , fill='#000000', font =display_Fonts(fonts.light, fontsize=25))
-    # draw.text((220  , 220), "Wind", fill='#000000', font =display_Fonts(fonts.normal,fontsize=25))
-    # draw.text((220, 245),   wind_direct_text + curr_wind_txt + 'mph', fill='#008000', font =display_Fonts(fonts.normal, fontsize=35))
+
+    #Wind
+    draw.text((220, 220), 'Wind' , fill='#000000', font =display_Fonts(fonts.normal,fontsize=25))
+    wind_icon = Image.open(img_folder + 'wind.jpg').convert("RGBA")
+    wind_icon_resize = wind_icon.resize((35,35))
+    canvas.paste(wind_icon_resize, (285, 218), wind_icon_resize)
+    draw.text((320  , 218), '(' + wind_direct_text + ')', fill='#008000', font =display_Fonts(fonts.normal,fontsize=25))
+    draw.text((220, 245), curr_wind_txt + 'Kph', fill='#ff0000', font =display_Fonts(fonts.light, fontsize=30))
+    WindText_width =  draw.textlength(curr_wind_txt + 'Kph', font =display_Fonts(fonts.normal, fontsize=30))
+    draw.text((220 + WindText_width, 245), '/'+ curr_wind_txt_Mph + 'Mph' , fill='#000000', font =display_Fonts(fonts.light, fontsize=30))
     
 
     # weather of next few days
