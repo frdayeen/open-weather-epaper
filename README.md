@@ -29,17 +29,17 @@ static_root = '/home/path-to-project/open-weather'
 Then change your lat (latitude) and lon (longitude)* according to where you are. You may also check [documentation](https://open-meteo.com/en/docs) and modify other parameters in the function.
 
 ```
-    def __init__(self):
-        #grab latitute and longitude for your area
-        lat = 52.52
-        lon = 31.85
-        daily_Para = 'weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max'
-        hourly_para = 'apparent_temperature,precipitation_probability'
-        curr_weather_bool = 'true'
-        tz = 'Your Timezone'
+def __init__(self):
+    #grab latitute and longitude for your area
+    lat = 52.52
+    lon = 31.85
+    daily_Para = 'weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max'
+    hourly_para = 'apparent_temperature,precipitation_probability'
+    curr_weather_bool = 'true'
+    tz = 'Your Timezone'
 ```
-
 then run it.
+
 5. To update the weather data periodically, go to your terminal and add a cronjob by typing
 ```
 crontab -e
