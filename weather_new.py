@@ -16,7 +16,7 @@ saturation = 0.9
 canvasSize = (600, 448)
 
 #change your root folder
-static_root = '/home/dayeen/epaper/open-weather'
+static_root = '/home/path-to-project/open-weather'
 img_folder = static_root + '/weather_jpg/'
 
 weather_Codes = {
