@@ -1,6 +1,8 @@
 # open-weather-epaper
 Weather dashboard using inky impression 7color epaper display. 
 This project was inspired from [this](https://github.com/kotamorishi/weather-impression) and [this](https://github.com/axwax/Open-Meteo-Inky-Pack) projects. The icons were downloaded from flaticons and fonts from Google fonts but feel free to use your own.
+
+
 ![eink weather dashboard](/assets/epaper-inky-weather-dashboard.jpeg)
 
 
@@ -20,10 +22,11 @@ This project was inspired from [this](https://github.com/kotamorishi/weather-imp
 ```
 crontab -e
 ```
-To run the file every hour add a line at the bottom of the file
+Add the line at the bottom of the file- 
 ```
 0 * * * * /path-to-your-python/environment /path-to/open-weather/weather_new.py
 ```
+This will run the file every hour.
 6. Enjoy your new weather dashboard.
 
 
