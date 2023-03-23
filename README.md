@@ -21,12 +21,12 @@ This project was inspired from [this](https://github.com/kotamorishi/weather-imp
 1. Download and install Raspberry Pi OS.
 2. Install [Pyenv](https://github.com/pyenv/pyenv) or any other python virtual environment and activate it. Raspberry pi OS comes with python, so using a virtual python environment would be useful incase something messed up.
 3. Install necessary [packages](https://github.com/pimoroni/inky) for Inky impression.
-4. Clone the project files. Edit weather_new.py and update *static root
+4. Clone the project files. Edit weather_new.py and update *static root*
 ```
 #change your root folder
 static_root = '/home/path-to-project/open-weather'
 ```
-Then change your latitude and longitude according to where you are. You may also check [documentation](https://open-meteo.com/en/docs) and modify other parameters in the function.
+Then change your lat (latitude) and lon (longitude)* according to where you are. You may also check [documentation](https://open-meteo.com/en/docs) and modify other parameters in the function.
 
 ```
     def __init__(self):
@@ -39,7 +39,7 @@ Then change your latitude and longitude according to where you are. You may also
         tz = 'Your Timezone'
 ```
 
- lat (latitude) and lon (longitude)* then run it.
+then run it.
 5. To update the weather data periodically, go to your terminal and add a cronjob by typing
 ```
 crontab -e
