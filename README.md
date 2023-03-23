@@ -15,13 +15,13 @@ This project was inspired from [this](https://github.com/kotamorishi/weather-imp
 3. Install necessary [packages](https://github.com/pimoroni/inky) for Inky impression.
 4. Clone the package files. Edit weather_new.py and update static root, lat (latitude) and lon (longitude), then run it.
 5. To update the weather data periodically, go to your terminal and add a cronjob by typing
-'''
+```
 crontab -e
-'''
+```
 To run the file every hour add a line at the bottom of the file
-'''
+```
 0 * * * * /path/to/your/python/environment /path/to/open-weather/project/file
-'''
+```
 6. Enjoy your new weather dashboard.
 
 
