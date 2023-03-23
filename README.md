@@ -20,7 +20,7 @@ crontab -e
 ```
 To run the file every hour add a line at the bottom of the file
 ```
-0 * * * * /path/to/your/python/environment /path/to/open-weather/project/file
+0 * * * * /path-to-your-python/environment /path-to/open-weather/weather_new.py
 ```
 6. Enjoy your new weather dashboard.
 
