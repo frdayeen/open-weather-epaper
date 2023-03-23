@@ -19,8 +19,11 @@ This project was inspired from [this](https://github.com/kotamorishi/weather-imp
 ## Instruction
 
 1. Download and install Raspberry Pi OS.
+
 2. Install [Pyenv](https://github.com/pyenv/pyenv) or any other python virtual environment and activate it. Raspberry pi OS comes with python, so using a virtual python environment would be useful incase something messed up.
+
 3. Install necessary [packages](https://github.com/pimoroni/inky) for Inky impression.
+
 4. Clone the project files. Edit weather_new.py and update *static root*
 ```
 #change your root folder
@@ -49,6 +52,7 @@ Add the line at the bottom of the file-
 0 * * * * /path-to-your-python/environment /path-to/open-weather/weather_new.py
 ```
 This will run the file every hour.
+
 6. Enjoy your new weather dashboard.
 
 
