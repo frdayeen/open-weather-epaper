@@ -2,7 +2,7 @@
 Weather dashboard using inky impression 7color epaper display. 
 
 
- Most of the weather forcast project uses API from Openweather map. But recently openweather map limited their One call 3.0 for free use. Open meteo on the other hand is an open source weather API and free for non commercial uses and requires no registration. 
+ Most of the weather forcast project uses API from Openweather map. But recently openweather map limited their One call 3.0 API for free use. Open meteo on the other hand is an open source weather API and free for non commercial uses and requires no registration. 
 
 
 This project was inspired from [this](https://github.com/kotamorishi/weather-impression) and [this](https://github.com/axwax/Open-Meteo-Inky-Pack) projects.  The icons used in this project were downloaded from flaticons and fonts from Google fonts but feel free to use your own.
