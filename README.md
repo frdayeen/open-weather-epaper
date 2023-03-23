@@ -15,7 +15,7 @@ This project was inspired from [this](https://github.com/kotamorishi/weather-imp
 1. Download and install Raspberry Pi OS.
 2. Install [Pyenv](https://github.com/pyenv/pyenv) or any other python virtual environment and activate it. Raspberry pi OS comes with python, so using a virtual python environment would be useful incase something messed up.
 3. Install necessary [packages](https://github.com/pimoroni/inky) for Inky impression.
-4. Clone the project files. Edit weather_new.py and update **static root, lat (latitude) and lon (longitude)** then run it.
+4. Clone the project files. Edit weather_new.py and update *static root, lat (latitude) and lon (longitude)* then run it.
 5. To update the weather data periodically, go to your terminal and add a cronjob by typing
 ```
 crontab -e
