@@ -85,12 +85,12 @@ weather_Icons = {
 class weather_Info(object):
     def __init__(self):
         #grab latitute and longitude for your area
-        lat = 41.85
-        lon = -87.65
+        lat = 52.52
+        lon = 31.85
         daily_Para = 'weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max'
         hourly_para = 'apparent_temperature,precipitation_probability'
         curr_weather_bool = 'true'
-        tz = 'America%2FChicago'
+        tz = 'Your Timezone'
 
         forecast_api = 'https://api.open-meteo.com/v1/forecast?latitude=' + str(lat) +'&longitude=' + str(lon) + '&hourly=' + hourly_para + '&daily=' + daily_Para + '&current_weather=' + curr_weather_bool + '&timezone=' + tz
         self.jsonFile = requests.get(forecast_api).json()
