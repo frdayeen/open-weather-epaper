@@ -283,32 +283,32 @@ def weather_Display(winfo, canvas):
    
 
 
-def initGPIO():
+def init_GPIO():
     chip = gpiod.chip(0) # 0 chip 
     pin = 4
-    gpiod_pin = chip.get_line(pin)
+    gpiodPin = chip.get_line(pin)
     config = gpiod.line_request()
     config.consumer = "Blink"
     config.request_type = gpiod.line_request.DIRECTION_OUTPUT
-    gpiod_pin.request(config)
-    return gpiod_pin
+    gpiodPin.request(config)
+    return gpiodPin
 
-def setUpdateStatus(gpiod_pin, busy):
+def update_Status(gpiodPin, busy):
     if busy == True:
-        gpiod_pin.set_value(1)
+        gpiodPin.set_value(1)
     else:
-        gpiod_pin.set_value(0)
+        gpiodPin.set_value(0)
 
 def update_epaper():
-    gpio_pin = initGPIO()
-    setUpdateStatus(gpio_pin, True)
+    gpio_pin = init_GPIO()
+    update_Status(gpio_pin, True)
     winfo = weather_Info()
     canvas = Image.new("RGB", canvasSize, (255, 255, 255))
     weather_Display(winfo, canvas)
     inky = Inky()
     inky.set_image(canvas, saturation=saturation)
     inky.show()
-    setUpdateStatus(gpio_pin, False)
+    update_Status(gpio_pin, False)
 
 if __name__ == "__main__":
     update_epaper()
