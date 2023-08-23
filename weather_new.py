@@ -16,7 +16,7 @@ saturation = 0.9
 canvasSize = (600, 448)
 
 #change your root folder
-static_root = '/home/path-to-project/open-weather'
+static_root = '/home/dayeen/epaper/open-weather'
 img_folder = static_root + '/weather_jpg/'
 
 weather_Codes = {
@@ -46,8 +46,8 @@ weather_Codes = {
     85: 'Slight snow showers',
     86: 'Heavy snow showers',
     95: 'Thunderstorm',
-    96: 'Thunderstorm with slight hail',
-    99: 'Thunderstorm with heavy hail'
+    96: 'Thunderstorm with \nslight hail',
+    99: 'Thunderstorm with \nheavy hail'
 }
 
 weather_Icons = {
@@ -85,12 +85,12 @@ weather_Icons = {
 class weather_Info(object):
     def __init__(self):
         #grab latitute and longitude for your area
-        lat = 52.52
-        lon = 31.85
+        lat = YOUR LAT
+        lon = YOUR LONG
         daily_Para = 'weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max'
         hourly_para = 'apparent_temperature,precipitation_probability'
         curr_weather_bool = 'true'
-        tz = 'Your Timezone'
+        tz = 'America%2FChicago'
 
         forecast_api = 'https://api.open-meteo.com/v1/forecast?latitude=' + str(lat) +'&longitude=' + str(lon) + '&hourly=' + hourly_para + '&daily=' + daily_Para + '&current_weather=' + curr_weather_bool + '&timezone=' + tz
         self.jsonFile = requests.get(forecast_api).json()
@@ -197,6 +197,7 @@ def weather_Display(winfo, canvas):
 # YELLOW = #ffff00
 # ORANGE = #ffa500
     #draw.text((Xoffset , Yoffset), text/string, color,font=display_Fonts(fonts.normal,fontsize=34))
+    #  anchor="ra" will calculate the margin from right.
     # date 
     draw.text((15 , 5), day, fill='#000000',font=display_Fonts(fonts.light, fontsize=50))
     draw.text((width - 75, 5), month, fill='#0000ff', anchor="ra", font =display_Fonts(fonts.normal, fontsize=50))
@@ -205,10 +206,11 @@ def weather_Display(winfo, canvas):
    
 
     #current temp
-    draw.text((15, 60), weather_txt, fill='#008000',font=display_Fonts(fonts.normal,fontsize=35))
-    draw.text((width - 10, 140), '/' + fahrenheit_txt + u'\xb0F', fill='#000000', anchor="ra",font =display_Fonts(fonts.light, fontsize=45))
-    currtempText_width = draw.textlength(fahrenheit_txt + u'\xb0F', font =display_Fonts(fonts.normal, fontsize=45))
-    draw.text((width - currtempText_width - 25, 95), celsius_txt  + u'\xb0C', fill='#ff0000', anchor="ra",font =display_Fonts(fonts.normal, fontsize=90))
+    draw.text((15, 65), weather_txt, fill='#008000',font=display_Fonts(fonts.normal,fontsize=28))
+    # draw.text((width - 10, 140), '/' + fahrenheit_txt + u'\xb0F', fill='#000000', anchor="ra",font =display_Fonts(fonts.light, fontsize=45))
+    draw.text((15, 118), celsius_txt  + u'\xb0C', fill='#ff0000', font =display_Fonts(fonts.normal, fontsize=83))
+    currtempText_width = draw.textlength(celsius_txt + u'\xb0C', font =display_Fonts(fonts.normal, fontsize=83))
+    draw.text((currtempText_width + 25, 155), '/' + fahrenheit_txt + u'\xb0F', fill='#000000', font =display_Fonts(fonts.light, fontsize=45))
    
     
     
@@ -224,7 +226,7 @@ def weather_Display(winfo, canvas):
     #current weather icon
     weather_icon = Image.open(img_folder + weather_Icons[curr_weather]+'.jpg').convert("RGBA")
     weather_icon_resize = weather_icon.resize((120,120))
-    canvas.paste(weather_icon_resize, (15, 105), weather_icon_resize)
+    canvas.paste(weather_icon_resize, (415, 105), weather_icon_resize)
     weather_icon_next_day1 = Image.open(img_folder + weather_Icons[daily_weather[1]]+'.jpg').convert("RGBA")
     new_weather_icon_next_day1 = weather_icon_next_day1.resize((60,60))
     weather_icon_next_day2 = Image.open(img_folder+ weather_Icons[daily_weather[2]]+'.jpg').convert("RGBA")
@@ -257,58 +259,58 @@ def weather_Display(winfo, canvas):
     #tomorrow
     draw.text((15, 290), next_day1_txt, fill='#000000', anchor="la", font =display_Fonts(fonts.normal,fontsize=25))
     draw.text((15, 320), next_day1_weather_txt, fill='#000000', anchor="la",font =display_Fonts(fonts.light,fontsize=18))
-    canvas.paste(new_weather_icon_next_day1, (10, 350), new_weather_icon_next_day1)
+    canvas.paste(new_weather_icon_next_day1, (10, 365), new_weather_icon_next_day1)
     # draw.text((15, 350), weather_Icons[daily_weather[1]], fill='#ffa500', anchor="la", font=display_Fonts(fonts.weathericon, fontsize=45))
-    draw.text((75, 355), next_day1_temp_max + u'\xb0C' + '/' +  next_day1_temp_min + u'\xb0C', fill='#ff0000', anchor="la",font =display_Fonts(fonts.normal,fontsize=20))
-    draw.text((75, 375), precipitation_chance_next_day1 + '% chance', fill='#000000', anchor="la", font =display_Fonts(fonts.light,fontsize=20))
+    draw.text((75, 365), next_day1_temp_max + u'\xb0C' + '/' +  next_day1_temp_min + u'\xb0C', fill='#ff0000', anchor="la",font =display_Fonts(fonts.normal,fontsize=20))
+    draw.text((75, 385), precipitation_chance_next_day1 + '% chance', fill='#000000', anchor="la", font =display_Fonts(fonts.light,fontsize=20))
 
     #day after tomorrow
     draw.text((220, 290),  next_day2_txt , fill='#000000', anchor="la",font =display_Fonts(fonts.normal,fontsize=25))
     draw.text((220, 320), next_day2_weather_txt, fill='#000000', anchor="la",font =display_Fonts(fonts.light,fontsize=18))
-    canvas.paste(new_weather_icon_next_day2, (215, 350), new_weather_icon_next_day2)
+    canvas.paste(new_weather_icon_next_day2, (215, 365), new_weather_icon_next_day2)
     # draw.text((220, 350), weather_Icons[daily_weather[2]], fill='#ffa500', anchor="la",font=display_Fonts(fonts.weathericon, fontsize=45))
-    draw.text((280, 355), next_day2_temp_max + u'\xb0C' + '/' +  next_day2_temp_min + u'\xb0C', fill='#ff0000', anchor="la",font =display_Fonts(fonts.normal,fontsize=20))
-    draw.text((280, 375), precipitation_chance_next_day2 + '% chance', fill='#000000', anchor="la",font =display_Fonts(fonts.light,fontsize=20))
+    draw.text((280, 365), next_day2_temp_max + u'\xb0C' + '/' +  next_day2_temp_min + u'\xb0C', fill='#ff0000', anchor="la",font =display_Fonts(fonts.normal,fontsize=20))
+    draw.text((280, 385), precipitation_chance_next_day2 + '% chance', fill='#000000', anchor="la",font =display_Fonts(fonts.light,fontsize=20))
 
     #next of day after tomorrow
     draw.text((420, 290),  next_day3_txt , fill='#000000', anchor="la",font =display_Fonts(fonts.normal,fontsize=25))
     draw.text((420, 320), next_day3_weather_txt, fill='#000000', anchor="la",font =display_Fonts(fonts.light,fontsize=18))
-    canvas.paste(new_weather_icon_next_day3, (415, 350), new_weather_icon_next_day3)
+    canvas.paste(new_weather_icon_next_day3, (415, 365), new_weather_icon_next_day3)
     # draw.text((420, 350), weather_Icons[daily_weather[3]], fill='#ffa500', anchor="la",font=display_Fonts(fonts.weathericon, fontsize=45))
-    draw.text((480, 355), next_day3_temp_max + u'\xb0C' + '/' +  next_day3_temp_min + u'\xb0C', fill='#ff0000', anchor="la",font =display_Fonts(fonts.normal,fontsize=20))
-    draw.text((480, 375),  precipitation_chance_next_day3 + '% chance', fill='#000000', anchor="la",font =display_Fonts(fonts.light,fontsize=20))
+    draw.text((480, 365), next_day3_temp_max + u'\xb0C' + '/' +  next_day3_temp_min + u'\xb0C', fill='#ff0000', anchor="la",font =display_Fonts(fonts.normal,fontsize=20))
+    draw.text((480, 385),  precipitation_chance_next_day3 + '% chance', fill='#000000', anchor="la",font =display_Fonts(fonts.light,fontsize=20))
 
 
     # print(currtime_index,'\n',chance_of_rain,'\n',precipitation_chance_12hrs)
    
 
 
-def init_GPIO():
+def initGPIO():
     chip = gpiod.chip(0) # 0 chip 
     pin = 4
-    gpiodPin = chip.get_line(pin)
+    gpiod_pin = chip.get_line(pin)
     config = gpiod.line_request()
     config.consumer = "Blink"
     config.request_type = gpiod.line_request.DIRECTION_OUTPUT
-    gpiodPin.request(config)
-    return gpiodPin
+    gpiod_pin.request(config)
+    return gpiod_pin
 
-def update_Status(gpiodPin, busy):
+def setUpdateStatus(gpiod_pin, busy):
     if busy == True:
-        gpiodPin.set_value(1)
+        gpiod_pin.set_value(1)
     else:
-        gpiodPin.set_value(0)
+        gpiod_pin.set_value(0)
 
 def update_epaper():
-    gpio_pin = init_GPIO()
-    update_Status(gpio_pin, True)
+    gpio_pin = initGPIO()
+    setUpdateStatus(gpio_pin, True)
     winfo = weather_Info()
     canvas = Image.new("RGB", canvasSize, (255, 255, 255))
     weather_Display(winfo, canvas)
     inky = Inky()
     inky.set_image(canvas, saturation=saturation)
     inky.show()
-    update_Status(gpio_pin, False)
+    setUpdateStatus(gpio_pin, False)
 
 if __name__ == "__main__":
     update_epaper()
