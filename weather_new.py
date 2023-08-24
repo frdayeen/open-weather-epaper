@@ -85,8 +85,8 @@ weather_Icons = {
 class weather_Info(object):
     def __init__(self):
         #grab latitute and longitude for your area
-        lat = Your Latitude
-        lon = Your Longitude
+        lat = 55.55
+        lon = -45.45
         daily_Para = 'weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max'
         hourly_para = 'apparent_temperature,precipitation_probability'
         curr_weather_bool = 'true'
@@ -238,9 +238,8 @@ def weather_Display(winfo, canvas):
 
     # chance of rain        
     draw.text((width - 20, 220), 'Precipitation', fill='#000000', anchor="ra",font =display_Fonts(fonts.normal,fontsize=25))
-    draw.text((width -15, 245), 'chance' , fill='#000000', anchor="ra", font =display_Fonts(fonts.light, fontsize=30))
-    PrecipitationText_width = draw.textlength('chance', font =display_Fonts(fonts.light, fontsize=30))
-    draw.text((width - PrecipitationText_width -25, 245),  precipitation_chance_12hrs + '%' , fill='#008000', anchor="ra", font =display_Fonts(fonts.light, fontsize=30))
+    draw.text((width - 20, 250), 'chance' , fill='#000000', anchor="ra", font =display_Fonts(fonts.light, fontsize=25))
+    draw.text((width - 105, 245),  precipitation_chance_12hrs + '%' , fill='#008000', anchor="ra", font =display_Fonts(fonts.light, fontsize=30))
 
 
     #Wind
