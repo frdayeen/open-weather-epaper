@@ -85,8 +85,8 @@ weather_Icons = {
 class weather_Info(object):
     def __init__(self):
         #grab latitute and longitude for your area
-        lat = YOUR LAT
-        lon = YOUR LONG
+        lat = Your Latitude
+        lon = Your Longitude
         daily_Para = 'weathercode,temperature_2m_max,temperature_2m_min,precipitation_probability_max'
         hourly_para = 'apparent_temperature,precipitation_probability'
         curr_weather_bool = 'true'
@@ -213,15 +213,6 @@ def weather_Display(winfo, canvas):
     draw.text((currtempText_width + 25, 155), '/' + fahrenheit_txt + u'\xb0F', fill='#000000', font =display_Fonts(fonts.light, fontsize=45))
    
     
-    
-    #feels like 
-    draw.text((width - 15, 220), 'Feels like' , fill='#000000', anchor="ra",font =display_Fonts(fonts.normal,fontsize=25))
-    draw.text((width - 15, 245), '/' + fahrenheit_feelslike + u'\xb0F', fill='#000000', anchor="ra", font =display_Fonts(fonts.light, fontsize=30))
-    feelslikeText_width = draw.textlength(fahrenheit_feelslike + u'\xb0F', font =display_Fonts(fonts.normal, fontsize=30))
-    draw.text((width - feelslikeText_width - 25, 245), celsius_feelslike + u'\xb0C', fill='#ff0000', anchor="ra", font =display_Fonts(fonts.light, fontsize=30))
-   
-    
-    
 
     #current weather icon
     weather_icon = Image.open(img_folder + weather_Icons[curr_weather]+'.jpg').convert("RGBA")
@@ -237,12 +228,20 @@ def weather_Display(winfo, canvas):
     # draw.text((15, 90), weather_Icons[curr_weather], fill='#ffff00',font=display_Fonts(fonts.weathericon, fontsize=130))
 
 
+    #feels like 
+    draw.text((15, 220), 'Feels like' , fill='#000000',font =display_Fonts(fonts.normal,fontsize=25))
+    draw.text((15, 245), celsius_feelslike + u'\xb0C', fill='#ff0000',  font =display_Fonts(fonts.light, fontsize=30))
+    feelslikeText_width = draw.textlength(celsius_feelslike + u'\xb0C', font =display_Fonts(fonts.normal, fontsize=30))
+    draw.text((feelslikeText_width + 15, 245), '/' + fahrenheit_feelslike + u'\xb0F', fill='#000000', font =display_Fonts(fonts.light, fontsize=30))
+   
+    
 
     # chance of rain        
-    draw.text((15, 220), 'Precipitation', fill='#000000', font =display_Fonts(fonts.normal,fontsize=25))
-    draw.text((15, 245),  precipitation_chance_12hrs + '%' , fill='#008000', font =display_Fonts(fonts.light, fontsize=30))
-    PrecipitationText_width = draw.textlength(precipitation_chance_12hrs + '%', font =display_Fonts(fonts.light, fontsize=30))
-    draw.text((PrecipitationText_width +25, 250), 'chance' , fill='#000000', font =display_Fonts(fonts.light, fontsize=25))
+    draw.text((width - 20, 220), 'Precipitation', fill='#000000', anchor="ra",font =display_Fonts(fonts.normal,fontsize=25))
+    draw.text((width -15, 245), 'chance' , fill='#000000', anchor="ra", font =display_Fonts(fonts.light, fontsize=30))
+    PrecipitationText_width = draw.textlength('chance', font =display_Fonts(fonts.light, fontsize=30))
+    draw.text((width - PrecipitationText_width -25, 245),  precipitation_chance_12hrs + '%' , fill='#008000', anchor="ra", font =display_Fonts(fonts.light, fontsize=30))
+
 
     #Wind
     draw.text((220, 220), 'Wind' , fill='#000000', font =display_Fonts(fonts.normal,fontsize=25))
@@ -258,27 +257,26 @@ def weather_Display(winfo, canvas):
     # weather of next few days
     #tomorrow
     draw.text((15, 290), next_day1_txt, fill='#000000', anchor="la", font =display_Fonts(fonts.normal,fontsize=25))
-    draw.text((15, 320), next_day1_weather_txt, fill='#000000', anchor="la",font =display_Fonts(fonts.light,fontsize=18))
-    canvas.paste(new_weather_icon_next_day1, (10, 365), new_weather_icon_next_day1)
+    canvas.paste(new_weather_icon_next_day1, (10, 320), new_weather_icon_next_day1)
     # draw.text((15, 350), weather_Icons[daily_weather[1]], fill='#ffa500', anchor="la", font=display_Fonts(fonts.weathericon, fontsize=45))
-    draw.text((75, 365), next_day1_temp_max + u'\xb0C' + '/' +  next_day1_temp_min + u'\xb0C', fill='#ff0000', anchor="la",font =display_Fonts(fonts.normal,fontsize=20))
-    draw.text((75, 385), precipitation_chance_next_day1 + '% chance', fill='#000000', anchor="la", font =display_Fonts(fonts.light,fontsize=20))
+    draw.text((75, 320), next_day1_temp_max + u'\xb0C' + '/' +  next_day1_temp_min + u'\xb0C', fill='#ff0000', anchor="la",font =display_Fonts(fonts.normal,fontsize=20))
+    draw.text((75, 340), precipitation_chance_next_day1 + '% chance', fill='#000000', anchor="la", font =display_Fonts(fonts.light,fontsize=20))
+    draw.text((15, 370), next_day1_weather_txt, fill='#000000', anchor="la",font =display_Fonts(fonts.light,fontsize=18))
 
     #day after tomorrow
     draw.text((220, 290),  next_day2_txt , fill='#000000', anchor="la",font =display_Fonts(fonts.normal,fontsize=25))
-    draw.text((220, 320), next_day2_weather_txt, fill='#000000', anchor="la",font =display_Fonts(fonts.light,fontsize=18))
-    canvas.paste(new_weather_icon_next_day2, (215, 365), new_weather_icon_next_day2)
+    canvas.paste(new_weather_icon_next_day2, (215, 320), new_weather_icon_next_day2)
     # draw.text((220, 350), weather_Icons[daily_weather[2]], fill='#ffa500', anchor="la",font=display_Fonts(fonts.weathericon, fontsize=45))
-    draw.text((280, 365), next_day2_temp_max + u'\xb0C' + '/' +  next_day2_temp_min + u'\xb0C', fill='#ff0000', anchor="la",font =display_Fonts(fonts.normal,fontsize=20))
-    draw.text((280, 385), precipitation_chance_next_day2 + '% chance', fill='#000000', anchor="la",font =display_Fonts(fonts.light,fontsize=20))
-
+    draw.text((280, 320), next_day2_temp_max + u'\xb0C' + '/' +  next_day2_temp_min + u'\xb0C', fill='#ff0000', anchor="la",font =display_Fonts(fonts.normal,fontsize=20))
+    draw.text((280, 340), precipitation_chance_next_day2 + '% chance', fill='#000000', anchor="la",font =display_Fonts(fonts.light,fontsize=20))
+    draw.text((220, 370), next_day2_weather_txt, fill='#000000', anchor="la",font =display_Fonts(fonts.light,fontsize=18))
     #next of day after tomorrow
     draw.text((420, 290),  next_day3_txt , fill='#000000', anchor="la",font =display_Fonts(fonts.normal,fontsize=25))
-    draw.text((420, 320), next_day3_weather_txt, fill='#000000', anchor="la",font =display_Fonts(fonts.light,fontsize=18))
-    canvas.paste(new_weather_icon_next_day3, (415, 365), new_weather_icon_next_day3)
+    canvas.paste(new_weather_icon_next_day3, (415, 320), new_weather_icon_next_day3)
     # draw.text((420, 350), weather_Icons[daily_weather[3]], fill='#ffa500', anchor="la",font=display_Fonts(fonts.weathericon, fontsize=45))
-    draw.text((480, 365), next_day3_temp_max + u'\xb0C' + '/' +  next_day3_temp_min + u'\xb0C', fill='#ff0000', anchor="la",font =display_Fonts(fonts.normal,fontsize=20))
-    draw.text((480, 385),  precipitation_chance_next_day3 + '% chance', fill='#000000', anchor="la",font =display_Fonts(fonts.light,fontsize=20))
+    draw.text((480, 320), next_day3_temp_max + u'\xb0C' + '/' +  next_day3_temp_min + u'\xb0C', fill='#ff0000', anchor="la",font =display_Fonts(fonts.normal,fontsize=20))
+    draw.text((480, 340),  precipitation_chance_next_day3 + '% chance', fill='#000000', anchor="la",font =display_Fonts(fonts.light,fontsize=20))
+    draw.text((420, 370), next_day3_weather_txt, fill='#000000', anchor="la",font =display_Fonts(fonts.light,fontsize=18))
 
 
     # print(currtime_index,'\n',chance_of_rain,'\n',precipitation_chance_12hrs)
